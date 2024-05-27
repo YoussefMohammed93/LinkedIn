@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  min-height: 100vh;
+  background: #000;
+}
+
+input {
+  outline: none;
+}
+
+.main-bg {
+  background: #1b1f23;
+}
+
+.text-gray {
+  color: #bbbcbd;
+}
+
+.main-padding {
+  padding-left: 120px;
+  padding-right: 120px;
+}
+@media (max-width: 1280px) {
+  .main-padding {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+@media (max-width: 768px) {
+  .main-padding {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 540px) {
+  .main-padding {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.nav-link:hover svg,
+.nav-link:hover span,
+.nav-link-premium:hover {
+  color: #fff !important;
+}
