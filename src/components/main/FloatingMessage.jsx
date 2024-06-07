@@ -105,9 +105,9 @@ export default function FloatingMessaging() {
           {isOptionsVisible && (
             <div
               ref={optionsRef}
-              className="absolute right-0 bottom-full mb-2 py-1 main-bg rounded-md z-50 w-48"
+              className="absolute right-0 bottom-10 mb-2 py-1 main-bg rounded-md z-50 w-48"
               style={{ border: "1px solid #404040" }}
-              onClick={(e) => e.stopPropagation()} // Prevent event propagation
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="hover:bg-[#8c8c8c26] p-2 text-[#ffffffbf]">
                 Manage conversations

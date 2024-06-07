@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MainLogo from "/src/assets/linkedin-white.png";
 import Avatar from "/src/assets/avatar.png";
 
@@ -7,6 +7,7 @@ export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const location = useLocation();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -30,8 +31,12 @@ export default function Header() {
     };
   }, []);
 
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
   return (
-    <header className="main-header fixed z-20 top-0 left-0 right-0 flex items-center justify-between py-1 main-padding main-bg">
+    <header className="main-header fixed z-20 top-0 left-0 right-0 flex items-center justify-between main-padding main-bg">
       <div className="flex items-center">
         <div className="main-logo">
           <Link to="/">
@@ -65,7 +70,18 @@ export default function Header() {
         </div>
       </div>
       <nav className="navbar flex items-center gap-5">
-        <div>
+        <div
+          className={`${isActive("/Home") ? "active-nav" : ""}`}
+          style={
+            isActive("/")
+              ? {
+                  borderBottom: "2px solid white",
+                  marginTop: "9px",
+                  padding: "3px",
+                }
+              : {}
+          }
+        >
           <Link to="/Home" className="nav-link flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -75,17 +91,35 @@ export default function Header() {
               width="24"
               height="24"
               focusable="false"
-              style={{ color: "#bbbcbd" }}
+              style={{
+                color: isActive("/") ? "white" : "#bbbcbd",
+              }}
             >
               <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7 5 3.18V2h3v5.09z"></path>
             </svg>
-            <span className="text-span text-sm" style={{ color: "#bbbcbd" }}>
+            <span
+              className="text-span text-sm"
+              style={{
+                color: isActive("/") ? "white" : "#bbbcbd",
+              }}
+            >
               Home
             </span>
           </Link>
         </div>
-        <div>
-          <Link to="/Home" className="nav-link flex flex-col items-center">
+        <div
+          className={`${isActive("/MyNetwork") ? "active-nav" : ""}`}
+          style={
+            isActive("/MyNetwork")
+              ? {
+                  borderBottom: "2px solid white",
+                  marginTop: "9px",
+                  padding: "3px",
+                }
+              : {}
+          }
+        >
+          <Link to="/MyNetwork" className="nav-link flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -94,11 +128,18 @@ export default function Header() {
               width="24"
               height="24"
               focusable="false"
-              style={{ color: "#bbbcbd" }}
+              style={{
+                color: isActive("/MyNetwork") ? "white" : "#bbbcbd",
+              }}
             >
-              <path d="M12 16v6H3v-6a3 3 0 013-3h3a3 3 0 013 3zm5.5-3A3.5 3.5 0 1014 9.5a3.5 3.5 0 003.5 3.5zm1 2h-2a2.5 2.5 0 00-2.5 2.5V22h7v-4.5a2.5 2.5 0 00-2.5-2.5zM7.5 2A4.5 4.5 0 1012 6.5 4.49 4.49 0 007.5 2z"></path>
+              <path d="M12 16v6H3v-6a3 3 0 013-3h3a3 3 0 013 3zm5.5-3A3.5 3.5 0 1014 9.5a3.5 3.5 0 003.5 3.5zm1 2h-2a2.5 2.5 0 00-2.5 2.5V22h7v-4.5a2.5 2.5 0 00-2.5-2.5zM7.5 2A4.5 4.5 0 1012 6.5 4.49 4.5 0 007.5 2z"></path>
             </svg>
-            <span className="text-span text-sm" style={{ color: "#bbbcbd" }}>
+            <span
+              className="text-span text-sm"
+              style={{
+                color: isActive("/MyNetwork") ? "white" : "#bbbcbd",
+              }}
+            >
               My Network
             </span>
           </Link>
