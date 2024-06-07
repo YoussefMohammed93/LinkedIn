@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  min-height: 100vh;
+  min-height: 200vh;
   background: #000;
 }
 
@@ -23,18 +23,50 @@ input {
   padding-left: 120px;
   padding-right: 120px;
 }
+
 @media (max-width: 1280px) {
   .main-padding {
     padding-left: 80px;
     padding-right: 80px;
   }
 }
+
+@media (max-width: 1110px) {
+  .main-search-input {
+    width: 40px;
+  }
+  .main-search-input:focus {
+    position: absolute;
+    width: 100%;
+    min-width: calc(100vw - 200px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .text-span {
+    display: none;
+  }
+  .for-border {
+    height: 65px !important;
+  }
+  .nav-link img {
+    margin: 0 !important;
+  }
+}
+
 @media (max-width: 768px) {
   .main-padding {
     padding-left: 30px;
     padding-right: 30px;
   }
+  .main-search-input:focus {
+    min-width: calc(100vw - 110px);
+  }
+  .floating-messaging {
+    display: none;
+  }
 }
+
 @media (max-width: 540px) {
   .main-padding {
     padding-left: 10px;
@@ -46,4 +78,20 @@ input {
 .nav-link:hover span,
 .nav-link-premium:hover {
   color: #fff !important;
+}
+
+.floating-active {
+  position: absolute;
+  bottom: 500px;
+  background: #1b1f23;
+  left: 0;
+  padding-left: 12px;
+  border-bottom: 1px solid rgb(255 255 255/0.9);
+}
+
+.floating-input:hover,
+.floating-input:focus,
+.edit-floating-input:hover,
+.edit-floating-input:focus {
+  border: 2px solid #ffffffe6;
 }
