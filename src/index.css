@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 body {
-  min-height: 200vh;
   background: #000;
 }
 
@@ -65,12 +64,22 @@ input {
   .floating-messaging {
     display: none;
   }
+  .navbar > div {
+    border: none !important;
+    margin: 0 !important;
+  }
 }
 
 @media (max-width: 540px) {
   .main-padding {
     padding-left: 10px;
     padding-right: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .nav-jobs {
+    display: none !important;
   }
 }
 

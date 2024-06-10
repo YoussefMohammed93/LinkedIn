@@ -36,7 +36,7 @@ export default function Header() {
   };
 
   return (
-    <header className="main-header fixed z-20 top-0 left-0 right-0 flex items-center justify-between main-padding main-bg">
+    <header className="main-header fixed z-20 top-0 left-0 right-0 flex items-center justify-between main-padding main-bg py-2 md:py-0">
       <div className="flex items-center">
         <div className="main-logo">
           <Link to="/">
@@ -64,7 +64,7 @@ export default function Header() {
           <input
             type="text"
             placeholder="Search"
-            className="main-search-input absolute z-30 top-[-20px] h-10 rounded text-white placeholder:text-gray-300 pl-12"
+            className="main-search-input absolute z-30 top-[-20px] h-10 rounded text-white placeholder:text-gray-300 pl-12 w-64 focus:w-80 transition-all duration-300"
             style={{ background: "#38434f" }}
           />
         </div>
@@ -144,7 +144,7 @@ export default function Header() {
             </span>
           </Link>
         </div>
-        <div>
+        <div className="nav-jobs">
           <Link to="/Home" className="nav-link flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +237,7 @@ export default function Header() {
           </button>
           {dropdownOpen && (
             <div
-              className="dropdown-menu-user right-0 absolute main-bg rounded-md mt-3"
+              className="dropdown-menu-user right-0 absolute main-bg rounded-md mt-5 md:mt-3"
               style={{ width: "300px" }}
             >
               <button className="block transition duration-100 rounded-md w-full">
@@ -342,21 +342,24 @@ export default function Header() {
           </button>
           {menuOpen && (
             <div
-              className="dropdown-menu right-0 absolute main-bg rounded-md mt-5 flex flex-col p-4"
+              className="dropdown-menu right-0 absolute main-bg rounded-md mt-5 flex flex-col p-3"
               style={{ width: "300px" }}
             >
               <div className="flex flex-col mb-3">
-                <Link
-                  to="/Home"
-                  className="text-gray hover:underline cursor-pointer text-sm mb-2"
-                >
-                  For Business
+                <Link to="/Home" className="nav-link-premium text-sm text-gray hover:underline transition-all mb-4">
+                  <div className="nav-jobs-mobile">
+                    <span
+                      className="text-sm"
+                    >
+                     ● Jobs
+                    </span>
+                  </div>
                 </Link>
                 <Link
                   to="/"
-                  className="nav-link-premium underline text-sm text-gray transition-all"
+                  className="nav-link-premium text-sm text-gray hover:underline transition-all"
                 >
-                  Try Premium For EGP0
+                  ● Try Premium For EGP0
                 </Link>
               </div>
             </div>
