@@ -74,11 +74,14 @@ export default function FloatingMessaging() {
         style={{ border: "1px solid #404040" }}
       >
         <div className="flex items-center">
-          <img
-            src={AvatarImg}
-            alt="Avatar"
-            className="w-[36px] h-[36px] rounded-full"
-          />
+          <div className="relative">
+            <img
+              src={AvatarImg}
+              alt="Avatar"
+              className="w-[36px] h-[36px] rounded-full"
+            />
+            <div className="bg-[#37c898] w-3 h-3 absolute rounded-full bottom-[-1px] right-0" style={{border: "3px solid #1b1f23"}}></div>
+          </div>
           <h6 className="text-base font-medium text-white ml-3">Messaging</h6>
         </div>
         <div className="floating-options flex items-center relative">

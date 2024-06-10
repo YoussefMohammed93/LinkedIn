@@ -7,6 +7,7 @@ export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const menuRef = useRef(null); // Add a ref for the menu
   const location = useLocation();
 
   const toggleDropdown = () => {
@@ -18,7 +19,12 @@ export default function Header() {
   };
 
   const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target) &&
+      menuRef.current && // Check if the click is outside the menu as well
+      !menuRef.current.contains(event.target)
+    ) {
       setDropdownOpen(false);
       setMenuOpen(false);
     }
@@ -64,12 +70,12 @@ export default function Header() {
           <input
             type="text"
             placeholder="Search"
-            className="main-search-input absolute z-30 top-[-20px] h-10 rounded text-white placeholder:text-gray-300 pl-12 w-64 focus:w-80 transition-all duration-300"
+            className="main-search-input absolute z-30 top-[-20px] h-10 rounded text-white placeholder:text-gray-300 pl-12 sm:w-[265px] sm:focus:w-80 transition-all sm:duration-300"
             style={{ background: "#38434f" }}
           />
         </div>
       </div>
-      <nav className="navbar flex items-center gap-5">
+      <nav className="navbar flex items-center gap-3 sm:gap-5">
         <div
           className={`${isActive("/Home") ? "active-nav" : ""}`}
           style={
@@ -206,7 +212,9 @@ export default function Header() {
             onClick={toggleDropdown}
             className="nav-link flex flex-col items-center"
           >
-            <img src={Avatar} className="w-7 h-7 rounded-full mt-1" />
+            <div>
+              <img src={Avatar} className="w-7 h-7 rounded-full mt-1" />
+            </div>
             <span
               className="text-span text-sm mb-1 flex gap-1"
               style={{ color: "#bbbcbd" }}
@@ -319,7 +327,7 @@ export default function Header() {
             </div>
           )}
         </div>
-        <div className="relative md:hidden">
+        <div className="relative md:hidden" ref={menuRef}>
           <button
             onClick={toggleMenu}
             className="nav-link flex flex-col items-center"
@@ -345,14 +353,13 @@ export default function Header() {
               className="dropdown-menu right-0 absolute main-bg rounded-md mt-5 flex flex-col p-3"
               style={{ width: "300px" }}
             >
-              <div className="flex flex-col mb-3">
-                <Link to="/Home" className="nav-link-premium text-sm text-gray hover:underline transition-all mb-4">
+              <div className="dropdown-nav-mobile flex flex-col mb-4">
+                <Link
+                  to="/Home"
+                  className="nav-link-premium text-sm text-gray hover:underline transition-all mb-4"
+                >
                   <div className="nav-jobs-mobile">
-                    <span
-                      className="text-sm"
-                    >
-                     ● Jobs
-                    </span>
+                    <span className="text-sm">● Jobs</span>
                   </div>
                 </Link>
                 <Link
