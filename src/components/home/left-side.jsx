@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LeftSideBG from "/src/assets/background.jpg";
+import AvatarImg from "/src/assets/avatar.png";
 
 export default function LeftSide() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,7 +19,7 @@ export default function LeftSide() {
               <div
                 className="left-side-bg w-full h-20 bg-center"
                 style={{
-                  backgroundImage: "url(/src/assets/background.jpg)",
+                  backgroundImage: `url(${LeftSideBG})`,
                   borderTopLeftRadius: "8px",
                   borderTopRightRadius: "8px",
                 }}
@@ -25,7 +27,7 @@ export default function LeftSide() {
               <div className="left-side-img absolute left-1/2 top-7">
                 <Link to="/">
                   <img
-                    src="/src/assets/avatar.png"
+                    src={AvatarImg}
                     alt="user-avatar"
                     className="w-24 h-24 rounded-full"
                   />
