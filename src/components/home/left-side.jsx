@@ -197,7 +197,7 @@ export default function LeftSide() {
               >
                 <div className="px-5">
                   <p className="text-[#ffffff99]">Connections</p>
-                  <span className="text-[#ffffffe6]">Connect with alumni</span>
+                  <p className="text-[#ffffffe6] text-sm md:text-base  mt-2">Connect with alumni</p>
                 </div>
                 <div className="px-5">
                   <svg
