@@ -2,6 +2,7 @@ import Header from "../../components/main/Header";
 import FloatingMessaging from "../../components/main/FloatingMessage";
 import LeftSide from "../../components/home/left-side";
 import MainSide from "../../components/home/main-side";
+import RightSide from "../../components/home/right-side-";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
         </div>
         <div className="col-span-12 md:col-span-8 lg:col-span-6">
           <MainSide />
+        </div>
+        <div className="hidden md:block md:col-span-4 lg:col-span-3">
+          <RightSide />
         </div>
       </main>
     </div>

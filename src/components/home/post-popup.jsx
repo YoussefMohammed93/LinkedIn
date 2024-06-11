@@ -23,7 +23,7 @@ const PostPopup = () => {
     <>
       <button
         onClick={toggleModal}
-        className="w-full text-start text-[#ffffffbf] text-sm sm:text-lg font-semibold px-5 py-3 rounded-full transition-all duration-200 hover:bg-[#8c8c8c26]"
+        className="w-full text-start text-[#ffffffbf] text-sm sm:text-base font-semibold px-5 py-3 rounded-full transition-all duration-200 hover:bg-[#8c8c8c26]"
         style={{ border: "1px solid #ffffffbf" }}
         type="button"
       >
