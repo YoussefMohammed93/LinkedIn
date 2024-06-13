@@ -5,28 +5,22 @@ import Avatar from "/src/assets/avatar.png";
 
 export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const menuRef = useRef(null); // Add a ref for the menu
+  const menuRef = useRef(null);
   const location = useLocation();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   const handleClickOutside = (event) => {
     if (
       dropdownRef.current &&
       !dropdownRef.current.contains(event.target) &&
-      menuRef.current && // Check if the click is outside the menu as well
+      menuRef.current &&
       !menuRef.current.contains(event.target)
     ) {
       setDropdownOpen(false);
-      setMenuOpen(false);
     }
   };
 
@@ -326,60 +320,6 @@ export default function Header() {
               </div>
             </div>
           )}
-        </div>
-        <div className="relative md:hidden" ref={menuRef}>
-          <button
-            onClick={toggleMenu}
-            className="nav-link flex flex-col items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-              style={{ color: "#bbbcbd" }}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-              />
-            </svg>
-          </button>
-          {menuOpen && (
-            <div
-              className="dropdown-menu right-0 absolute main-bg rounded-md mt-5 flex flex-col p-3"
-              style={{ width: "300px" }}
-            >
-              <div className="dropdown-nav-mobile flex flex-col mb-4">
-                <Link
-                  to="/Home"
-                  className="nav-link-premium text-sm text-gray hover:underline transition-all mb-4"
-                >
-                  <div className="nav-jobs-mobile">
-                    <span className="text-sm">● Jobs</span>
-                  </div>
-                </Link>
-                <Link
-                  to="/"
-                  className="nav-link-premium text-sm text-gray hover:underline transition-all"
-                >
-                  ● Try Premium For EGP0
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="premium text-center hidden md:block">
-          <Link
-            to="/"
-            className="nav-link-premium underline text-sm text-gray transition-all"
-          >
-            Try Premium For <br />
-            EGP0
-          </Link>
         </div>
       </nav>
     </header>
