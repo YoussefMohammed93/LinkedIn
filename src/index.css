@@ -149,3 +149,9 @@ input {
 .media-post-img {
   transform: translate(-50%, -50%);
 }
+
+.icon-img-react {
+  width: 32px !important;
+  height: 32px !important;
+  max-width: max-content !important;
+}

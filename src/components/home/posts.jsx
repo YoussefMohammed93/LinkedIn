@@ -1,9 +1,84 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Tooltip } from "@material-tailwind/react";
 import LikeIcon from "/src/assets/Like-Icon.svg";
 import HeartIcon from "/src/assets/Heart-Icon.svg";
 import CareIcon from "/src/assets/Care-Icon.svg";
+import LikeIcon1 from "/src/assets/like-img-1.svg";
+import HeartIcon1 from "/src/assets/heart-img-1.svg";
+import CareIcon1 from "/src/assets/support-img-1.svg";
+import FunnyIcon from "/src/assets/funny-icon.svg";
+import InsightfulIcon from "/src/assets/Iinsightful-icon.svg";
+import CelebrateIcon from "/src/assets/celebrate-icon.svg";
 
 export default function Post(props) {
+  const [reaction, setReaction] = useState("");
+
+  useEffect(() => {
+    const savedReaction = localStorage.getItem(`userReaction-${props.postId}`);
+    if (savedReaction) {
+      setReaction(savedReaction);
+    }
+  }, [props.postId]);
+
+  const handleReactionClick = (newReaction) => {
+    if (reaction === newReaction) {
+      setReaction("");
+      localStorage.removeItem(`userReaction-${props.postId}`);
+    } else {
+      setReaction(newReaction);
+      localStorage.setItem(`userReaction-${props.postId}`, newReaction);
+    }
+  };
+
+  const renderIcon = () => {
+    switch (reaction) {
+      case "like":
+        return <img src={LikeIcon1} alt="like" className="size-5 sm:size-6" />;
+      case "celebrate":
+        return (
+          <img
+            src={CelebrateIcon}
+            alt="celebrate"
+            className="size-5 sm:size-6"
+          />
+        );
+      case "support":
+        return (
+          <img src={CareIcon1} alt="support" className="size-5 sm:size-6" />
+        );
+      case "love":
+        return <img src={HeartIcon1} alt="love" className="size-5 sm:size-6" />;
+      case "insightful":
+        return (
+          <img
+            src={InsightfulIcon}
+            alt="insightful"
+            className="size-5 sm:size-6"
+          />
+        );
+      case "funny":
+        return <img src={FunnyIcon} alt="funny" className="size-5 sm:size-6" />;
+      default:
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="#ffffff99"
+            className="size-5 sm:size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z"
+            />
+          </svg>
+        );
+    }
+  };
+
   return (
     <div className="main-post mt-4 mb-3 sm:mb-4">
       <main className="main-bg p-3 rounded-lg">
@@ -79,7 +154,9 @@ export default function Post(props) {
               </div>
             </div>
             <div className="main-post-content">
-              <h2 className="text-[#dbdbdb] text-base font-medium mt-1 mb-2">{props.postTitle}</h2>
+              <h2 className="text-[#dbdbdb] text-base font-medium mt-1 mb-2">
+                {props.postTitle}
+              </h2>
               <div>
                 <img src={props.img} alt="Post" />
               </div>
@@ -89,15 +166,12 @@ export default function Post(props) {
               >
                 <div className="flex cursor-pointer">
                   <div className="relative">
-                    {" "}
                     <img src={LikeIcon} alt="react-icon" />
                   </div>
                   <div className="relative right-[6px]">
-                    {" "}
                     <img src={HeartIcon} alt="react-icon" />
                   </div>
                   <div className="relative right-[12px]">
-                    {" "}
                     <img src={CareIcon} alt="react-icon" />
                   </div>
                   <div>
@@ -121,25 +195,162 @@ export default function Post(props) {
                 </div>
               </div>
               <div className="w-full flex mt-3 gap-1 sm:gap-3">
-                <button className="like-react w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="#ffffff99"
-                    className="size-5 sm:size-6"
+                <div className="relative w-1/4 group">
+                  <button
+                    className="like-react w-full flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
+                    onClick={() => handleReactionClick("like")}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z"
-                    />
-                  </svg>
-                  <h6 className="text-[#ffffff99] text-sm sm:text-base font-medium ml-1">
-                    Like
-                  </h6>
-                </button>
+                    {renderIcon()}
+                    <h6 className="text-[#ffffff99] text-sm sm:text-base font-medium ml-1">
+                      {reaction === "like"
+                        ? "Like"
+                        : reaction === "celebrate"
+                        ? "Celebrate"
+                        : reaction === "support"
+                        ? "Support"
+                        : reaction === "love"
+                        ? "Love"
+                        : reaction === "insightful"
+                        ? "Insightful"
+                        : reaction === "funny"
+                        ? "Funny"
+                        : "Like"}
+                    </h6>
+                  </button>
+                  <div
+                    style={{ border: "1px solid #404040" }}
+                    className="hidden w-[275px] group-hover:flex items-center gap-4 absolute bottom-8 left-[2px] px-2 py-1 main-bg rounded-md shadow-md"
+                  >
+                    <div>
+                      <Tooltip
+                        content="Like"
+                        placement="top"
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 25 },
+                        }}
+                        className="px-4 py-1"
+                      >
+                        <button onClick={() => handleReactionClick("like")}>
+                          <img
+                            src={LikeIcon1}
+                            alt="like"
+                            className={`icon-img-react hover:-translate-y-[5px] transition duration-150 ${
+                              reaction === "like" ? "text-blue-500" : ""
+                            }`}
+                          />
+                        </button>
+                      </Tooltip>
+                      <Tooltip
+                        content="Celebrate"
+                        placement="top"
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 25 },
+                        }}
+                        className="px-4 py-1"
+                      >
+                        <button
+                          onClick={() => handleReactionClick("celebrate")}
+                        >
+                          <img
+                            src={CelebrateIcon}
+                            alt="celebrate"
+                            className={`icon-img-react hover:-translate-y-[5px] transition duration-150 ${
+                              reaction === "celebrate" ? "text-blue-500" : ""
+                            }`}
+                          />
+                        </button>
+                      </Tooltip>
+                    </div>
+                    <div>
+                      <Tooltip
+                        content="Support"
+                        placement="top"
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 25 },
+                        }}
+                        className="px-4 py-1"
+                      >
+                        <button onClick={() => handleReactionClick("support")}>
+                          <img
+                            src={CareIcon1}
+                            alt="support"
+                            className={`icon-img-react hover:-translate-y-2 transition duration-150 ${
+                              reaction === "support" ? "text-yellow-500" : ""
+                            }`}
+                          />
+                        </button>
+                      </Tooltip>
+                    </div>
+                    <div>
+                      <Tooltip
+                        content="Love"
+                        placement="top"
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 25 },
+                        }}
+                        className="px-4 py-1"
+                      >
+                        <button onClick={() => handleReactionClick("love")}>
+                          <img
+                            src={HeartIcon1}
+                            alt="love"
+                            className={`icon-img-react hover:-translate-y-2 transition duration-150 ${
+                              reaction === "love" ? "text-red-500" : ""
+                            }`}
+                          />
+                        </button>
+                      </Tooltip>
+                    </div>
+                    <div>
+                      <Tooltip
+                        content="Insightful"
+                        placement="top"
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 25 },
+                        }}
+                        className="px-4 py-1"
+                      >
+                        <button
+                          onClick={() => handleReactionClick("insightful")}
+                        >
+                          <img
+                            src={InsightfulIcon}
+                            alt="insightful"
+                            className={`icon-img-react hover:-translate-y-2 transition duration-150 ${
+                              reaction === "insightful" ? "text-red-500" : ""
+                            }`}
+                          />
+                        </button>
+                      </Tooltip>
+                    </div>
+                    <div>
+                      <Tooltip
+                        content="Funny"
+                        placement="top"
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 25 },
+                        }}
+                        className="px-4 py-1"
+                      >
+                        <button onClick={() => handleReactionClick("funny")}>
+                          <img
+                            src={FunnyIcon}
+                            alt="funny"
+                            className={`icon-img-react hover:-translate-y-2 transition duration-150 ${
+                              reaction === "funny" ? "text-red-500" : ""
+                            }`}
+                          />
+                        </button>
+                      </Tooltip>
+                    </div>
+                  </div>
+                </div>
                 <button className="post-comment w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
