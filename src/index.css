@@ -94,15 +94,6 @@ input {
 }
 
 @media (max-width: 395px) {
-  .nav-jobs {
-    display: none !important;
-  }
-  .nav-jobs-mobile {
-    display: block;
-  }
-  .dropdown-nav-mobile {
-    margin-bottom: 10px !important;
-  }
   .main-search-input:focus {
     width: 310px !important;
   }

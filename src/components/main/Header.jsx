@@ -239,7 +239,7 @@ export default function Header() {
           </button>
           {dropdownOpen && (
             <div
-              className="dropdown-menu-user right-0 absolute main-bg rounded-md mt-5 md:mt-3 shadow-xl"
+              className="dropdown-menu-user right-0 absolute main-bg rounded-md mt-5 md:mt-3 shadow-2xl"
               style={{ width: "300px", border: "1px solid #404040" }}
             >
               <button className="block transition duration-100 rounded-md w-full">

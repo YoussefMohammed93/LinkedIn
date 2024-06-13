@@ -1,7 +1,9 @@
 import OsamaElzeroImg from "/src/assets/osama-elzero.jpeg";
 import MohammedAbusreaImg from "/src/assets/mohammed-abosre3.jpg";
+import AhmedFathyImg from "/src/assets/ahmed-fathy.jpg";
 import PostOneImg from "/src/assets/post-1.jpeg";
 import PostTwoImg from "/src/assets/post-2.jpg";
+import PostThreeImg from "/src/assets/post-3.jpg";
 
 export const Posts = [
   {
@@ -29,5 +31,17 @@ export const Posts = [
     reactsNum: 168,
     commentsNum: 13,
     repostsNum: 6,
+  },
+  {
+    id: 3,
+    userImg: AhmedFathyImg,
+    userName: "Ahmed Fathy",
+    userFollowers: "121.389",
+    postTime: "3d",
+    postTitle: "important live on youtube after two hours ..",
+    img: PostThreeImg,
+    reactsNum: 150,
+    commentsNum: 5,
+    repostsNum: 24,
   },
 ];
