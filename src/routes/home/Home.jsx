@@ -16,7 +16,7 @@ export default function Home() {
         <div className="col-span-12 md:col-span-8 lg:col-span-6">
           <MainSide />
         </div>
-        <div className="hidden md:block md:col-span-4 lg:col-span-3">
+        <div className="hidden lg:block lg:col-span-3">
           <RightSide />
         </div>
       </main>

@@ -197,7 +197,9 @@ export default function LeftSide() {
               >
                 <div className="px-5">
                   <p className="text-[#ffffff99]">Connections</p>
-                  <p className="text-[#ffffffe6] text-xs lg:text-base mt-2">Connect with alumni</p>
+                  <p className="text-[#ffffffe6] text-xs lg:text-base mt-2">
+                    Connect with alumni
+                  </p>
                 </div>
                 <div className="px-5">
                   <svg
@@ -284,7 +286,7 @@ export default function LeftSide() {
         </div>
         <div className="hidden sm:block mb-5">
           <div
-            className="main-bg p-5 mt-[6px]"
+            className="main-bg p-5 mt-[16px]"
             style={{
               borderBottom: "1px solid rgb(64, 64, 64)",
               borderTopLeftRadius: "8px",
