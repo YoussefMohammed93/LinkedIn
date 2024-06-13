@@ -15,19 +15,19 @@ export default function Post(props) {
   const [reaction, setReaction] = useState("");
 
   useEffect(() => {
-    const savedReaction = localStorage.getItem(`userReaction-${props.postId}`);
+    const savedReaction = localStorage.getItem(`userReaction-${props.id}`);
     if (savedReaction) {
       setReaction(savedReaction);
     }
-  }, [props.postId]);
+  }, [props.id]);
 
   const handleReactionClick = (newReaction) => {
     if (reaction === newReaction) {
       setReaction("");
-      localStorage.removeItem(`userReaction-${props.postId}`);
+      localStorage.removeItem(`userReaction-${props.id}`);
     } else {
       setReaction(newReaction);
-      localStorage.setItem(`userReaction-${props.postId}`, newReaction);
+      localStorage.setItem(`userReaction-${props.id}`, newReaction);
     }
   };
 
@@ -219,7 +219,7 @@ export default function Post(props) {
                   </button>
                   <div
                     style={{ border: "1px solid #404040" }}
-                    className="hidden w-[275px] group-hover:flex items-center gap-4 absolute bottom-8 left-[2px] px-2 py-1 main-bg rounded-md shadow-md"
+                    className="reacts-side hidden group-hover:flex items-center gap-4 absolute bottom-8 left-[2px] px-2 py-1 main-bg rounded-md shadow-md"
                   >
                     <div>
                       <Tooltip

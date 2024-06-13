@@ -10,6 +10,7 @@ export default function MainSide() {
     const PostsDataShow = Posts.map((post) => (
       <Post
         key={post.id}
+        id={post.id}
         userImg={post.userImg}
         userName={post.userName}
         userFollowers={post.userFollowers}

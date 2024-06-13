@@ -155,3 +155,7 @@ input {
   height: 32px !important;
   max-width: max-content !important;
 }
+
+.reacts-side {
+  width: 275px !important;
+}
