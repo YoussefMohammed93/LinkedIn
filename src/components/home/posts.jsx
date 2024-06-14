@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Tooltip } from "@material-tailwind/react";
+import AvatarImg from "/src/assets/avatar.png";
 import LikeIcon from "/src/assets/Like-Icon.svg";
 import HeartIcon from "/src/assets/Heart-Icon.svg";
 import CareIcon from "/src/assets/Care-Icon.svg";
@@ -14,6 +15,9 @@ import CelebrateIcon from "/src/assets/celebrate-icon.svg";
 export default function Post(props) {
   const [reaction, setReaction] = useState("");
   const [isDeleted, setIsDeleted] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [commentText, setCommentText] = useState("");
+  const [showRepostNotification, setShowRepostNotification] = useState(false);
 
   useEffect(() => {
     const savedReaction = localStorage.getItem(`userReaction-${props.id}`);
@@ -35,31 +39,31 @@ export default function Post(props) {
   const renderIcon = () => {
     switch (reaction) {
       case "like":
-        return <img src={LikeIcon1} alt="like" className="size-5 sm:size-6" />;
+        return <img src={LikeIcon1} alt="like" className="size-6" />;
       case "celebrate":
         return (
           <img
             src={CelebrateIcon}
             alt="celebrate"
-            className="size-5 sm:size-6"
+            className="size-6"
           />
         );
       case "support":
         return (
-          <img src={CareIcon1} alt="support" className="size-5 sm:size-6" />
+          <img src={CareIcon1} alt="support" className="size-6" />
         );
       case "love":
-        return <img src={HeartIcon1} alt="love" className="size-5 sm:size-6" />;
+        return <img src={HeartIcon1} alt="love" className="size-6" />;
       case "insightful":
         return (
           <img
             src={InsightfulIcon}
             alt="insightful"
-            className="size-5 sm:size-6"
+            className="size-6"
           />
         );
       case "funny":
-        return <img src={FunnyIcon} alt="funny" className="size-5 sm:size-6" />;
+        return <img src={FunnyIcon} alt="funny" className="size-6" />;
       default:
         return (
           <svg
@@ -86,6 +90,21 @@ export default function Post(props) {
 
   const handleUndo = () => {
     setIsDeleted(false);
+  };
+
+  const handleToggleComments = () => {
+    setShowComments((prevShowComments) => !prevShowComments);
+  };
+
+  const handleRepostClick = () => {
+    setShowRepostNotification(true);
+    setTimeout(() => {
+      setShowRepostNotification(false);
+    }, 3000);
+  };
+
+  const handleCloseNotification = () => {
+    setShowRepostNotification(false);
   };
 
   return (
@@ -202,7 +221,10 @@ export default function Post(props) {
                   </div>
                   <div className="flex items-center">
                     <div className="post-comments">
-                      <h5 className="text-[#ffffff99] text-xs font-medium hover:text-[#71b7fb] hover:underline cursor-pointer">
+                      <h5
+                        className="text-[#ffffff99] text-xs font-medium hover:text-[#71b7fb] hover:underline cursor-pointer"
+                        onClick={handleToggleComments}
+                      >
                         {props.commentsNum} comments
                       </h5>
                     </div>
@@ -373,7 +395,10 @@ export default function Post(props) {
                       </div>
                     </div>
                   </div>
-                  <button className="post-comment w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150">
+                  <button
+                    className="post-comment w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
+                    onClick={handleToggleComments}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -392,7 +417,10 @@ export default function Post(props) {
                       Comment
                     </h6>
                   </button>
-                  <button className="post-repost w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150">
+                  <button
+                    className="post-repost w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
+                    onClick={handleRepostClick}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -433,9 +461,111 @@ export default function Post(props) {
                   </button>
                 </div>
               </div>
+              <div
+                className={`comments-section main-bg rounded-md transition-all duration-300 ease-in-out ${
+                  showComments
+                    ? "max-h-[300px] opacity-100"
+                    : "max-h-0 opacity-0"
+                } overflow-hidden`}
+              >
+                <div className="flex items-center mt-4">
+                  <img
+                    src={AvatarImg}
+                    alt="avatar"
+                    className="w-11 h-11 max-w-max rounded-full"
+                  />
+                  <div className="relative w-full ml-2">
+                    <input
+                      type="text"
+                      value={commentText}
+                      onChange={(e) => setCommentText(e.target.value)}
+                      placeholder="Add a comment..."
+                      className="w-full main-bg rounded-full placeholder:text-[#ffffff99] text-white py-2"
+                      style={{ border: "2px solid #909090" }}
+                    />
+                    <button className="absolute right-16 top-[6px]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="#ffffff99"
+                        className="size-8 hover:bg-[#ffffff1d] p-1 transition-all duration-150 rounded-full"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"
+                        />
+                      </svg>
+                    </button>
+                    <button className="absolute right-6 top-[6px]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="#ffffff99"
+                        className="size-8 hover:bg-[#ffffff1d] p-1 transition-all duration-150 rounded-full"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                {commentText && (
+                  <div className="flex mt-3 ml-12">
+                    <button className="post-button bg-[#71b7fb] text-[#1b1f23] font-semibold px-3 rounded-full hover:bg-[#4490ce] transition duration-150">
+                      Post
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </main>
+      )}
+      {showRepostNotification && (
+        <div
+          className="repost-content fixed w-full bottom-4 left-[10px] sm:left-4 mx-auto main-bg text-white p-3 rounded-md transition-all duration-300 ease-in-out flex items-center shadow-md"
+          style={{ border: "1px solid #404040", width: "calc(100% - 20px)" }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="#37c898"
+            className="size-6 mr-3"
+          >
+            <path
+              fillRule="evenodd"
+              d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <p>Repost successful.</p>
+          <div>
+            <button
+              onClick={handleCloseNotification}
+              className="ml-2 absolute right-2 top-[10px]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ffffff99"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-7 h-7 p-1 hover:bg-[#ffffff1d] rounded-full transition-all duration-200"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
