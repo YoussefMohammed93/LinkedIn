@@ -25,7 +25,7 @@ const NotAvilablePopup = ({ buttonText, buttonIcon, buttonClass }) => {
         className={`flex items-center px-3 py-2 rounded-md transition-all duration-200 ${buttonClass}`}
       >
         {buttonIcon}
-        <p className="text-[#ffffffbf] text-sm sm:font-semibold ml-2">
+        <p className="text-[#ffffff99] text-sm sm:font-semibold ml-2">
           {buttonText}
         </p>
       </button>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Tooltip } from "@material-tailwind/react";
+import NotAvilablePopup from "./not-avilable-popup";
 import AvatarImg from "/src/assets/avatar.png";
 import LikeIcon from "/src/assets/Like-Icon.svg";
 import HeartIcon from "/src/assets/Heart-Icon.svg";
@@ -18,6 +19,155 @@ export default function Post(props) {
   const [showComments, setShowComments] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [showRepostNotification, setShowRepostNotification] = useState(false);
+
+  function DropdownMenu() {
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    const toggleDropdown = () => {
+      setIsOpen(!isOpen);
+    };
+
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    useEffect(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
+
+    return (
+      <div className="relative" ref={dropdownRef}>
+        <button
+          onClick={toggleDropdown}
+          className="text-[#ffffff99] bg-transparent hover:bg-[#ffffff1d] rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all duration-200"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="size-7 transition-all duration-200"
+          >
+            <path
+              fillRule="evenodd"
+              d="M4.5 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+        {isOpen && (
+          <div
+            className="absolute right-0 top-10 mb-2 py-2 main-bg rounded-md z-50 w-60 shadow-2xl"
+            style={{ border: "1px solid rgb(64, 64, 64)" }}
+          >
+            <button className="hover:bg-[#8c8c8c26] flex items-center w-full p-2 sm:p-3 text-[#ffffffe1]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6 mr-3"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+                />
+              </svg>
+              Save
+            </button>
+            <button className="hover:bg-[#8c8c8c26] flex items-center w-full p-3 text-[#ffffffe1]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6 mr-3"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                />
+              </svg>
+              Copy link to post
+            </button>
+            <button className="hover:bg-[#8c8c8c26] flex items-center w-full p-3 text-[#ffffffe1]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6 mr-3"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"
+                />
+              </svg>
+              Embded this post
+            </button>
+            <button className="hover:bg-[#8c8c8c26] flex items-center w-full p-3 text-[#ffffffe1]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6 mr-3"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                />
+              </svg>
+              Not interested
+            </button>
+            <button className="hover:bg-[#8c8c8c26] flex items-center w-full p-3 text-[#ffffffe1]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-6 mr-3"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Unfollow {props.userName}
+            </button>
+            <button className="hover:bg-[#8c8c8c26] flex items-center w-full p-3 text-[#ffffffe1]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-6 mr-3"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 2.25a.75.75 0 0 1 .75.75v.54l1.838-.46a9.75 9.75 0 0 1 6.725.738l.108.054A8.25 8.25 0 0 0 18 4.524l3.11-.732a.75.75 0 0 1 .917.81 47.784 47.784 0 0 0 .005 10.337.75.75 0 0 1-.574.812l-3.114.733a9.75 9.75 0 0 1-6.594-.77l-.108-.054a8.25 8.25 0 0 0-5.69-.625l-2.202.55V21a.75.75 0 0 1-1.5 0V3A.75.75 0 0 1 3 2.25Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Report post
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   useEffect(() => {
     const savedReaction = localStorage.getItem(`userReaction-${props.id}`);
@@ -41,27 +191,13 @@ export default function Post(props) {
       case "like":
         return <img src={LikeIcon1} alt="like" className="size-6" />;
       case "celebrate":
-        return (
-          <img
-            src={CelebrateIcon}
-            alt="celebrate"
-            className="size-6"
-          />
-        );
+        return <img src={CelebrateIcon} alt="celebrate" className="size-6" />;
       case "support":
-        return (
-          <img src={CareIcon1} alt="support" className="size-6" />
-        );
+        return <img src={CareIcon1} alt="support" className="size-6" />;
       case "love":
         return <img src={HeartIcon1} alt="love" className="size-6" />;
       case "insightful":
-        return (
-          <img
-            src={InsightfulIcon}
-            alt="insightful"
-            className="size-6"
-          />
-        );
+        return <img src={InsightfulIcon} alt="insightful" className="size-6" />;
       case "funny":
         return <img src={FunnyIcon} alt="funny" className="size-6" />;
       default:
@@ -155,20 +291,7 @@ export default function Post(props) {
                   </div>
                 </Link>
                 <div className="flex items-center gap-2">
-                  <button className="text-[#ffffff99] bg-transparent hover:bg-[#ffffff1d] rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all duration-200">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="size-7 transition-all duration-200"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M4.5 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
+                  <DropdownMenu />
                   <button
                     type="button"
                     className="text-[#ffffff99] bg-transparent hover:bg-[#ffffff1d] rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all duration-200"
@@ -197,7 +320,11 @@ export default function Post(props) {
                   {props.postTitle}
                 </h2>
                 <div>
-                  <img src={props.img} alt="Post" />
+                  <img
+                    src={props.img}
+                    alt="Post"
+                    style={{ display: props.imgDisplay }}
+                  />
                 </div>
                 <div
                   className="w-full flex items-center justify-between mt-3 pb-2"
@@ -239,11 +366,11 @@ export default function Post(props) {
                 <div className="w-full flex mt-3 gap-1 sm:gap-3">
                   <div className="relative w-1/4 group">
                     <button
-                      className="like-react w-full flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
+                      className="like-react mt-[5px] w-full flex items-center justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
                       onClick={() => handleReactionClick("like")}
                     >
                       {renderIcon()}
-                      <h6 className="text-[#ffffff99] text-sm sm:text-base font-medium ml-1">
+                      <h6 className="text-[#ffffff99] text-sm sm:font-semibold ml-1">
                         {reaction === "like"
                           ? "Like"
                           : reaction === "celebrate"
@@ -261,7 +388,7 @@ export default function Post(props) {
                     </button>
                     <div
                       style={{ border: "1px solid #404040" }}
-                      className="reacts-side hidden group-hover:flex items-center gap-4 absolute bottom-8 left-[2px] px-2 py-1 main-bg rounded-md shadow-md"
+                      className="reacts-side hidden group-hover:flex items-center gap-4 absolute bottom-10 left-[2px] px-2 py-1 main-bg rounded-md shadow-md"
                     >
                       <div>
                         <Tooltip
@@ -396,7 +523,7 @@ export default function Post(props) {
                     </div>
                   </div>
                   <button
-                    className="post-comment w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
+                    className="post-comment w-1/4 flex items-center justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
                     onClick={handleToggleComments}
                   >
                     <svg
@@ -413,12 +540,12 @@ export default function Post(props) {
                         d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"
                       />
                     </svg>
-                    <h6 className="text-[#ffffff99] text-sm sm:text-base font-medium ml-1">
+                    <h6 className="text-[#ffffff99] text-sm sm:font-semibold ml-1">
                       Comment
                     </h6>
                   </button>
                   <button
-                    className="post-repost w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
+                    className="post-repost w-1/4 flex items-center justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
                     onClick={handleRepostClick}
                   >
                     <svg
@@ -435,30 +562,30 @@ export default function Post(props) {
                         d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3"
                       />
                     </svg>
-                    <h6 className="text-[#ffffff99] text-sm sm:text-base font-medium ml-1">
+                    <h6 className="text-[#ffffff99] text-sm sm:font-semibold ml-1">
                       Repost
                     </h6>
                   </button>
-                  <button className="post-send w-1/4 flex justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="#ffffff99"
-                      className="size-5 sm:size-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                      />
-                    </svg>
-
-                    <h6 className="text-[#ffffff99] text-sm sm:text-base font-medium ml-1">
-                      Send
-                    </h6>
-                  </button>
+                  <NotAvilablePopup
+                    buttonText="Send"
+                    buttonClass="post-send w-1/4 flex justify-center text-[#ffffff99] py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
+                    buttonIcon={
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="#ffffff99"
+                        className="size-5 sm:size-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                        />
+                      </svg>
+                    }
+                  />
                 </div>
               </div>
               <div

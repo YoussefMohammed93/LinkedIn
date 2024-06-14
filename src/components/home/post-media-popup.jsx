@@ -37,7 +37,7 @@ const MediaPostPopup = () => {
             clipRule="evenodd"
           />
         </svg>
-        <p className="text-[#ffffffbf] text-sm sm:font-semibold ml-2">Media</p>
+        <p className="text-[#ffffff99] text-sm sm:font-semibold ml-2">Media</p>
       </button>
 
       {isModalOpen && (

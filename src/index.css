@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  width: 12.5px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #223950;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #162534;
+}
+
 body {
   background: #000;
 }
@@ -58,6 +74,10 @@ input {
   .nav-link img {
     margin: 0 !important;
   }
+  .navbar > div {
+    border: none !important;
+    margin: 0 !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -70,10 +90,6 @@ input {
   }
   .floating-messaging {
     display: none;
-  }
-  .navbar > div {
-    border: none !important;
-    margin: 0 !important;
   }
 }
 
@@ -99,7 +115,7 @@ input {
   }
 }
 
-@media(min-width: 640px) {
+@media (min-width: 640px) {
   .repost-content {
     width: 18rem !important;
   }
@@ -155,4 +171,32 @@ input {
 
 .reacts-side {
   width: 275px !important;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  margin: 0 5px;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+  background: #0073b1;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
 }

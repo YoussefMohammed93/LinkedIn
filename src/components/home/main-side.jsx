@@ -15,6 +15,7 @@ export default function MainSide() {
         userName={post.userName}
         userFollowers={post.userFollowers}
         img={post.img}
+        imgDisplay={post.imgDisplay}
         postTime={post.postTime}
         postTitle={post.postTitle}
         reactsNum={post.reactsNum}
@@ -87,6 +88,18 @@ export default function MainSide() {
         </div>
       </div>
       <MainPostFN />
+      <div className="loading-container">
+        <div className="py-4 my-4 text-center main-bg rounded-lg">
+          <h3 className="text-xl font-semibold text-white">
+            Loading New Posts ...
+          </h3>
+          <div className="loader mt-4 flex items-center justify-center my-3">
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -36,7 +36,7 @@ export default function Header() {
   };
 
   return (
-    <header className="main-header fixed z-20 top-0 left-0 right-0 flex items-center justify-between main-padding main-bg py-2 md:py-0">
+    <header className="main-header fixed z-20 top-0 left-0 right-0 flex items-center justify-between main-padding main-bg py-2 lg:py-0">
       <div className="flex items-center">
         <div className="main-logo">
           <Link to="/">
