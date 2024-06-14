@@ -21,6 +21,12 @@ export default function MainSide() {
         reactsNum={post.reactsNum}
         commentsNum={post.commentsNum}
         repostsNum={post.repostsNum}
+        ifLikeDisplay={post.ifLikeDisplay}
+        ifLikeImg={post.ifLikeImg}
+        ifLikeName={post.ifLikeName}
+        ifCommentDisplay={post.ifCommentDisplay}
+        ifCommentImg={post.ifCommentImg}
+        ifCommentName={post.ifCommentName}
       />
     ));
     return <div className="main-posts">{PostsDataShow}</div>;

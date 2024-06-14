@@ -259,6 +259,54 @@ export default function Post(props) {
         <main className="main-bg p-3 rounded-lg">
           <div>
             <div>
+              <div
+                style={{
+                  display: props.ifLikeDisplay,
+                  borderBottom: "1px solid rgb(64 64 64)",
+                }}
+                className="mb-2 pb-1"
+              >
+                <Link
+                  className="if-comment flex items-center gap-2 w-full relative bottom-1"
+                  to="/"
+                >
+                  <img
+                    src={props.ifLikeImg}
+                    alt="user-comment"
+                    className="cursor-pointer w-8 h-8 rounded-full"
+                  />
+                  <h3 className="text-gray text-sm">
+                    <span className="text-white font-semibold hover:underline cursor-pointer hover:text-blue-300">
+                      {props.ifLikeName}
+                    </span>{" "}
+                    Like this
+                  </h3>
+                </Link>
+              </div>
+              <div
+                style={{
+                  display: props.ifCommentDisplay,
+                  borderBottom: "1px solid rgb(64 64 64)",
+                }}
+                className="mb-2 pb-1"
+              >
+                <Link
+                  className="if-comment flex items-center gap-2 w-full relative bottom-1"
+                  to="/"
+                >
+                  <img
+                    src={props.ifCommentImg}
+                    alt="user-comment"
+                    className="cursor-pointer w-8 h-8 rounded-full"
+                  />
+                  <h3 className="text-gray text-sm">
+                    <span className="text-white font-semibold hover:underline cursor-pointer hover:text-blue-300">
+                      {props.ifCommentName}
+                    </span>{" "}
+                    Commented on this
+                  </h3>
+                </Link>
+              </div>
               <div className="flex items-start justify-between">
                 <Link to="/" className="flex items-center">
                   <img
@@ -327,7 +375,7 @@ export default function Post(props) {
                   />
                 </div>
                 <div
-                  className="w-full flex items-center justify-between mt-3 pb-2"
+                  className="w-full flex items-center justify-between mt-2 pb-1"
                   style={{ borderBottom: "1px solid #404040" }}
                 >
                   <div className="flex cursor-pointer">
@@ -363,7 +411,7 @@ export default function Post(props) {
                     </div>
                   </div>
                 </div>
-                <div className="w-full flex mt-3 gap-1 sm:gap-3">
+                <div className="w-full flex mt-2 gap-1 sm:gap-3">
                   <div className="relative w-1/4 group">
                     <button
                       className="like-react mt-[5px] w-full flex items-center justify-center py-1 hover:bg-[#8c8c8c26] rounded-md transition duration-150"
