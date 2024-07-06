@@ -200,3 +200,7 @@ input {
     transform: scale(1);
   }
 }
+
+.more-btn:hover {
+  border-color: white !important;
+}

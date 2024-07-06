@@ -82,7 +82,7 @@ export default function Header() {
               : {}
           }
         >
-          <Link to="/Home" className="nav-link flex flex-col items-center">
+          <Link to="/" className="nav-link flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

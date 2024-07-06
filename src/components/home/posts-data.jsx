@@ -1,5 +1,5 @@
 import OsamaElzeroImg from "/src/assets/osama-elzero.jpeg";
-import MohammedAbusreaImg from "/src/assets/mohammed-abosre3.jpg";
+import MohammedAbusreaImg from "/src/assets/mohammed-abosre3.jpeg";
 import AhmedFathyImg from "/src/assets/ahmed-fathy.jpg";
 import AlmdrasaImg from "/src/assets/almdrasa.jpg";
 import W3SchollsImg from "/src/assets/w3schools.jpg";
@@ -12,6 +12,9 @@ import PostSixImg from "/src/assets/post-6.jpg";
 export const Posts = [
   {
     id: 1,
+    userID: 1,
+    ifLikeID: 1,
+    ifCommentedID: 1,
     userImg: OsamaElzeroImg,
     userName: "Osama Elzero",
     userFollowers: "255.325",
@@ -34,6 +37,9 @@ export const Posts = [
   },
   {
     id: 2,
+    userID: 2,
+    ifLikeID: 2,
+    ifCommentedID: 2,
     userImg: MohammedAbusreaImg,
     userName: "Mohammed Abusrea",
     userFollowers: "92.542",
@@ -55,6 +61,9 @@ export const Posts = [
   },
   {
     id: 3,
+    userID: 3,
+    ifLikeID: 3,
+    ifCommentedID: 3,
     userImg: AhmedFathyImg,
     userName: "Ahmed Fathy",
     userFollowers: "121.389",
@@ -75,6 +84,9 @@ export const Posts = [
   },
   {
     id: 4,
+    userID: 4,
+    ifLikeID: 4,
+    ifCommentedID: 4,
     userImg: OsamaElzeroImg,
     userName: "Osama Elzero",
     userFollowers: "255.325",
@@ -96,6 +108,9 @@ export const Posts = [
   },
   {
     id: 5,
+    userID: 5,
+    ifLikeID: 5,
+    ifCommentedID: 5,
     userImg: AlmdrasaImg,
     userName: "Almdrasa",
     userFollowers: "129.595",
@@ -118,6 +133,9 @@ export const Posts = [
   },
   {
     id: 6,
+    userID: 6,
+    ifLikeID: 6,
+    ifCommentedID: 6,
     userImg: W3SchollsImg,
     userName: "W3Scholls",
     userFollowers: "1.429.135",
@@ -139,6 +157,9 @@ export const Posts = [
   },
   {
     id: 7,
+    userID: 7,
+    ifLikeID: 7,
+    ifCommentedID: 7,
     userImg: MohammedAbusreaImg,
     userName: "Mohammed Abusrea",
     userFollowers: "92.542",
@@ -159,6 +180,9 @@ export const Posts = [
   },
   {
     id: 8,
+    userID: 8,
+    ifLikeID: 8,
+    ifCommentedID: 8,
     userImg: W3SchollsImg,
     userName: "W3Scholls",
     userFollowers: "1.429.135",

@@ -62,7 +62,7 @@ export default function Post(props) {
         </button>
         {isOpen && (
           <div
-            className="absolute right-0 top-10 mb-2 py-2 main-bg rounded-md z-50 w-60 shadow-2xl"
+            className="absolute right-0 top-10 mb-2 py-2 main-bg rounded-md z-50 w-72 shadow-2xl"
             style={{ border: "1px solid rgb(64, 64, 64)" }}
           >
             <button className="hover:bg-[#8c8c8c26] flex items-center w-full p-2 sm:p-3 text-[#ffffffe1]">
@@ -268,7 +268,7 @@ export default function Post(props) {
               >
                 <Link
                   className="if-comment flex items-center gap-2 w-full relative bottom-1"
-                  to="/"
+                  to={`/user/${props.ifLikeID}`}
                 >
                   <img
                     src={props.ifLikeImg}
@@ -292,7 +292,7 @@ export default function Post(props) {
               >
                 <Link
                   className="if-comment flex items-center gap-2 w-full relative bottom-1"
-                  to="/"
+                  to={`/user/${props.id}`}
                 >
                   <img
                     src={props.ifCommentImg}
@@ -308,7 +308,11 @@ export default function Post(props) {
                 </Link>
               </div>
               <div className="flex items-start justify-between">
-                <Link to="/" className="flex items-center">
+                <Link
+                  to={`/user/${props.id}`}
+                  key={props.id}
+                  className="flex items-center"
+                >
                   <img
                     src={props.userImg}
                     alt={props.userName}
