@@ -26,7 +26,7 @@ export default function UserPage() {
                 alt={user.userName}
               />
             </div>
-            <div className="absolute top-10 sm:top-16 md:top-10 lg:top-16 xl:top-[7.5rem] left-5">
+            <div className="a absolute top-10 sm:top-16 md:top-10 lg:top-16 xl:top-[7.5rem] left-5">
               <img
                 src={user.userImg}
                 className="rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-28 md:h-28 lg:w-36 lg:h-36"

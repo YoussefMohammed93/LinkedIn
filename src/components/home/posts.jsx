@@ -268,7 +268,7 @@ export default function Post(props) {
               >
                 <Link
                   className="if-comment flex items-center gap-2 w-full relative bottom-1"
-                  to={`/user/${props.ifLikeID}`}
+                  to={`/user/${props.id}`}
                 >
                   <img
                     src={props.ifLikeImg}
@@ -292,7 +292,7 @@ export default function Post(props) {
               >
                 <Link
                   className="if-comment flex items-center gap-2 w-full relative bottom-1"
-                  to={`/user/${props.id}`}
+                  to="/"
                 >
                   <img
                     src={props.ifCommentImg}
